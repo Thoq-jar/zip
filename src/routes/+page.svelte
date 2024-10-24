@@ -3,6 +3,7 @@
 
   let status = '';
   let generating = false;
+  let powerfulComputer = false;
 
   function generateRandomString(length: number): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,7 +19,7 @@
     status = 'Generating...';
     const zip = new JSZip();
     const fileCount = 3000;
-    const fileSize = 10000;
+    const fileSize = powerfulComputer ? 50000 : 10000;
 
     for (let i = 0; i < fileCount; i++) {
       const fileContent = generateRandomString(fileSize);
@@ -38,6 +39,10 @@
 </script>
 
 <main>
+  <label>
+    <input type="checkbox" bind:checked={powerfulComputer} />
+    I Have A Powerful Computer
+  </label>
   <button on:click={generate} disabled={generating}>
     {generating ? 'Generating...' : 'Generate'}
   </button>
